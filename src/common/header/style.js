@@ -21,7 +21,7 @@ export const Logo = styled.a.attrs({
 export const Nav = styled.div `
   width: 960px;
   padding-right: 70px;
-  border-sizing: border-box;
+  box-sizing: border-box;
   height: 100%;
   margin: 0 auto;
 `
@@ -60,19 +60,20 @@ export const SearchRapper = styled.div`
 `
 export const NavSearch = styled.input.attrs({
   placeholder: '搜索'
-}) `
+}) 
+`
   width: 160px;
   height: 38px;
   padding: 0 45px 0 20px;
   margin-top: 9px;
   border: none;
-  border-sizing: border-box;
+  box-sizing: border-box;
   outline: none;
   border-radius: 15px;
   background: #eee;
   font-size: 15px;
   color: #666;
-  $::placeholder {
+  &::placeholder {
     color: #999;
   }
   &.focused {
@@ -91,6 +92,7 @@ export const NavSearch = styled.input.attrs({
     width: 160px;
   }
 `
+
 export const Addition = styled.div `
   position: absolute;
   right: 0;
@@ -113,4 +115,37 @@ export const Button = styled.div `
     color: #fff;
     background: #ec6149;
   }
+`
+export const SearchInfo = styled.div`
+  position: absolute;
+  width: 240px;
+  top: 56px;
+  padding: 0 20px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0,0,0, .2);
+`
+export const SearchInfoTitle = styled.div`
+  margin: 15px 0 10px 0 ;
+  line-height: 20px;
+  font-size: 14px;
+  color: #969696;
+`
+export const SearchInfoSwitch = styled.div`
+  float: right;
+  font-size: 13px;
+`
+export const SearchInfoItem = styled.div`
+  display: block;
+  float: left;
+  line-height: 20px;
+  margin:  0 10px 15px 0;
+  padding: 0 5px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  color: #787878; 
+  border-radius: 3px;
+
+`
+export const SearchInfoList = styled.div`
+  
 `
