@@ -2,7 +2,10 @@ import * as constants from './constants'
 import { fromJS } from 'immutable'
 const defaultState = fromJS({
     focused : false,
-    list: []
+    mouseEnter: false,
+    list: [],
+    page: 1, // 当前起始页码
+    totalPage: 1,
 });
 
 export default (state = defaultState, action) => {
@@ -13,7 +16,7 @@ export default (state = defaultState, action) => {
       return state.set('focused', false);
     case constants.CHANGE_LIST:
       console.log('action.data',action.data)
-      return state.set('list', action.data);
+      return state.set('list', action.data).set('totalPage', action.totalPage);
     default :
     return state
   }

@@ -21,18 +21,22 @@ import {
 
 class Header extends Component {
   showListArea = () => {
-    if(this.props.focused){
+    const {focused, list, page} = this.props;
+    let newList = list.toJS();
+    let pageList = []
+    for(let i = (page - 1) * 10; i < page * 10 ; i++){
+      pageList.push(
+        <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+      )
+    }
+    if(focused){
       return (
         <SearchInfo>
           <SearchInfoTitle>热门搜索
             <SearchInfoSwitch>换一批</SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
-            {
-              this.props.list.map((item) => {
-                return <SearchInfoItem key={item}>{item}</SearchInfoItem>
-              })
-            }
+            {pageList}
           </SearchInfoList>
         </SearchInfo>
       )
@@ -41,6 +45,7 @@ class Header extends Component {
     }
   }
   render (){
+    const {focused, handleBlured, handleFocused} = this.props;
     return (
       <HeaderWrapper>
         <Logo></Logo>
@@ -53,15 +58,15 @@ class Header extends Component {
           <NavItem className="right">登陆</NavItem>
           <SearchRapper>
             <CSSTransition
-              in={this.props.focused}
+              in={focused}
               timeout={200}
               classNames="slide">
               <NavSearch 
-                onBlur={this.props.handleBlured}
-                onFocus={this.props.handleFocused}
-                className={this.props.focused ? "focused" : ""}/>
+                onBlur={handleBlured}
+                onFocus={handleFocused}
+                className={focused ? "focused" : ""}/>
             </CSSTransition>
-            <i className={this.props.focused ? "focused iconfont" : "iconfont"}>&#xe61c;</i>
+            <i className={focused ? "focused iconfont" : "iconfont"}>&#xe61c;</i>
             {this.showListArea()}
           </SearchRapper>
         </Nav>
@@ -80,7 +85,8 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     focused: state.getIn(['header', 'focused']),
-    list: state.getIn(['header', 'list'])
+    list: state.getIn(['header', 'list']),
+    page: state.getIn(['header', 'page'])
   }
 }
 const mapDispathToProps = (dispatch) => {
