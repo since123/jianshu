@@ -21,19 +21,22 @@ import {
 
 class Header extends Component {
   showListArea = () => {
-    const {focused, list, page} = this.props;
+    const {focused, list, page, totalPage, handleMouseEnter, handleMouseLeave, mouseEnter, handleChangePage} = this.props;
     let newList = list.toJS();
     let pageList = []
-    for(let i = (page - 1) * 10; i < page * 10 ; i++){
-      pageList.push(
-        <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
-      )
+    if(newList.length){
+      for(let i = (page - 1) * 10; i < page * 10 ; i++){
+        pageList.push(
+          <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+        )
+      }
     }
-    if(focused){
+    if(focused || mouseEnter){
       return (
-        <SearchInfo>
+        <SearchInfo onMouseEnter= {handleMouseEnter}
+          onMouseLeave={handleMouseLeave}>
           <SearchInfoTitle>热门搜索
-            <SearchInfoSwitch>换一批</SearchInfoSwitch>
+            <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>换一批</SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
             {pageList}
@@ -86,7 +89,9 @@ const mapStateToProps = (state) => {
   return {
     focused: state.getIn(['header', 'focused']),
     list: state.getIn(['header', 'list']),
-    page: state.getIn(['header', 'page'])
+    page: state.getIn(['header', 'page']),
+    totalPage: state.getIn(['header', 'totalPage']),
+    mouseEnter: state.getIn(['header', 'mouseEnter'])
   }
 }
 const mapDispathToProps = (dispatch) => {
@@ -97,6 +102,20 @@ const mapDispathToProps = (dispatch) => {
     },
     handleBlured(){
       dispatch(actionCreators.searchBlur())
+    },
+    handleMouseEnter(){
+      dispatch(actionCreators.mouseEnter())
+    },
+    handleMouseLeave(){
+      dispatch(actionCreators.mouseLeave())
+    },
+    handleChangePage(page, totalPage){
+      console.log("page", page, totalPage)
+      if(page < totalPage){
+        dispatch(actionCreators.changePage(page + 1))
+      }else{
+        dispatch(actionCreators.changePage(1))
+      }
     }
   }
 }

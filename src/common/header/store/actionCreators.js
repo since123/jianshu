@@ -12,6 +12,16 @@ export const changeList = (data) => ({
   data: fromJS(data),
   totalPage: Math.ceil(data.length / 10)
 })
+export const mouseEnter = () => ({
+  type: constants.MOUSE_ENTER
+})
+export const mouseLeave = () => ({
+  type: constants.MOUSE_LEAVE
+})
+export const changePage = (page) => ({
+  type: constants.CHANGE_PAGE,
+  page
+})
 export const getList = () => {
   return (dispatch) => {
     axios.get('/api/headerList.json').then(res => {

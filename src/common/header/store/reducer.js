@@ -17,6 +17,12 @@ export default (state = defaultState, action) => {
     case constants.CHANGE_LIST:
       console.log('action.data',action.data)
       return state.set('list', action.data).set('totalPage', action.totalPage);
+    case constants.MOUSE_ENTER:
+      return state.set('mouseEnter', true)
+    case constants.MOUSE_LEAVE:
+      return state.set('mouseEnter', false)
+    case constants.CHANGE_PAGE:
+      return state.set('page', action.page)
     default :
     return state
   }
