@@ -16,10 +16,11 @@ class Topic extends Component {
                 src={item.get('imgUrl')}
                 alt={'wert'}
               />
-                {item.get('title')}
+                <span className='title'>{item.get('title')}</span>
             </TopicItem>
           ))
         }
+        <span className='more-topic'>更多热门专题 >>></span>
       </TopicWrapper>
     )
   }
