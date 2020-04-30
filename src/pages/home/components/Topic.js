@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TopicWrapper, TopicItem } from '../style'
-
+import { actionCreators } from '../store'
 
 class Topic extends Component {
   render(){ 
-    const  { list }  = this.props;
+    const  { list, getMoreTopic }  = this.props;
     return (
       <TopicWrapper>
         {
-          list.map((item) => (
-            <TopicItem key={item.get('id')}>
+          list.map((item, index) => (
+            <TopicItem key={index}>
               <img
                 className='topic-pic'
                 src={item.get('imgUrl')}
@@ -20,7 +20,7 @@ class Topic extends Component {
             </TopicItem>
           ))
         }
-        <span className='more-topic'>更多热门专题 >>></span>
+        <span className='more-topic' onClick={() => getMoreTopic()}>更多热门专题 >>></span>
       </TopicWrapper>
     )
   }
@@ -29,5 +29,10 @@ class Topic extends Component {
 const mapState = (state) => ({
   list: state.get('home').get('topicList')
 });
-
-export default connect(mapState, null)(Topic);
+const mapDispatch = (dispatch) => ({
+  getMoreTopic(){
+    const action = actionCreators.getMoreTopic()
+    dispatch(action)
+  }
+})
+export default connect(mapState, mapDispatch)(Topic);

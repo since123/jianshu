@@ -36,7 +36,8 @@ class Header extends Component {
         <SearchInfo onMouseEnter= {handleMouseEnter}
           onMouseLeave={handleMouseLeave}>
           <SearchInfoTitle>热门搜索
-            <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>换一批</SearchInfoSwitch>
+            <SearchInfoSwitch onClick={() => handleChangePage(page, totalPage, this.spinIcon)}>
+              <i ref={(spin) => {this.spinIcon = spin}} className="iconfont">&#xe65f;</i>换一批</SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
             {pageList}
@@ -109,8 +110,15 @@ const mapDispathToProps = (dispatch) => {
     handleMouseLeave(){
       dispatch(actionCreators.mouseLeave())
     },
-    handleChangePage(page, totalPage){
-      console.log("page", page, totalPage)
+    handleChangePage(page, totalPage, spin){
+      console.log('spin.style.transform', spin.style.transform)
+      let originAngle = spin.style.transform.replace(/[^0-9]/ig, '')
+      if(originAngle){
+        originAngle = parseInt(originAngle, 10);
+      }else {
+        originAngle = 0;
+      }
+      spin.style.transform = 'rotate(' + (originAngle + 90) + 'deg';
       if(page < totalPage){
         dispatch(actionCreators.changePage(page + 1))
       }else{

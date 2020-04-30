@@ -14,6 +14,16 @@ export default (state = defaultState, action) => {
         articleList: fromJS(action.articleList),
         recommendList: fromJS(action.recommendList)
       })
+    case constants.ADD_HOME_LIST:
+        console.log('concat(articleList)', action.list)
+      return state.merge({
+        'articleList': state.get('articleList').concat(action.list)
+      })
+    case constants.ADD_TOP_LIST:
+      console.log('concat(action.list)', action.toplist)
+      return state.merge({
+        'topicList': state.get('topicList').concat(action.toplist)
+      })
     default:
       return state;
   }
