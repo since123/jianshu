@@ -4,7 +4,11 @@ import * as constants from './constants';
 const defaultState = fromJS({
   topicList: [],
   articleList: [],
-  recommendList: []
+  recommendList: [],
+  QRcode: require("../../../static/image/QRcode.png"),
+  totalPage: 5,
+  page: 1,
+  list: [],
 })
 export default (state = defaultState, action) => {
   switch(action.type) {
@@ -23,6 +27,10 @@ export default (state = defaultState, action) => {
       console.log('concat(action.list)', action)
       return state.merge({
         'topicList': state.get('topicList').concat(action.toplist)
+      })
+    case constants.CHANGE_PAGE:
+      return state.merge({
+        page: fromJS(action.page)
       })
     default:
       return state;

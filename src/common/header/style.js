@@ -157,3 +157,4 @@ export const SearchInfoItem = styled.div`
 export const SearchInfoList = styled.div`
   
 `
+

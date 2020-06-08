@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Topic from './components/Topic';
 import List from './components/List';
 import Recommend from './components/Recommend';
+import Upload from './components/Upload';
 import Writer from './components/Writer';
 import { actionCreators } from './store';
 
@@ -26,6 +27,7 @@ class Home extends Component {
         </HomeLeft>
         <HomeRight>
           <Recommend />
+          <Upload />
           <Writer />
         </HomeRight>
       </HomeWrapper>

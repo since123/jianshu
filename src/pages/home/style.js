@@ -78,3 +78,43 @@ export const RecommendItem = styled.div`
 export const LoadMore = styled.div`
   color: red;
 `
+
+export const Uploader = styled.div`
+display: flex;
+align-items: center;
+margin-bottom: 30px;
+padding: 10px 22px;
+border: 1px solid #f0f0f0;
+border-radius: 6px;
+img{
+  width: 50px;
+  height: 50px;
+  padding-right: 10px;
+}
+.title {
+  font-size: 14px;
+  color: #333;
+}
+.desc {
+  font-size: 12px;
+  color: #999;
+  margin-top: 10px;
+}
+`
+export const WriterWapper = styled.div`
+
+`
+export const SearchInfoSwitch = styled.div`
+  font-size: 14px;
+  color: #969696;
+`
+export const WrapperHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  .title{
+    font-size: 14px;
+    color: #969696;
+  }
+`
+export const SearchInfoItem = styled.div`
+`

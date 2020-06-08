@@ -16,6 +16,10 @@ const addTopList = (toplist) => ({
   type: constants.ADD_TOP_LIST,
   toplist: fromJS(toplist)
 })
+export const changePage = (page) => ({
+  type: constants.CHANGE_PAGE,
+  page: fromJS(page)
+})
 export const getHomeInfo = () => {
   return (dispatch) => {
     axios.get('./api/home.json').then((res) => {
